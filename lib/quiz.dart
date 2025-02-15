@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'package:basic2quiz/start_screen.dart';
 import 'package:basic2quiz/questions_screen.dart';
+import 'package:basic2quiz/data/questions.dart';
 
 class Quiz extends StatefulWidget {
   const Quiz({super.key});
@@ -13,7 +14,7 @@ class Quiz extends StatefulWidget {
 }
 
 class _QuizState extends State<Quiz> {
-  final List<String> selectedAnswers = [];
+  List<String> selectedAnswers = [];
   var activeScreen = 'start-screen';
 
   void switchScreen() {
@@ -24,6 +25,13 @@ class _QuizState extends State<Quiz> {
 
   void chooseAnswer(String answer) {
     selectedAnswers.add(answer);
+
+    if (selectedAnswers.length == questions.length) {
+      setState(() {
+        selectedAnswers = [];
+        activeScreen = 'start-screen';
+      });
+    }
   }
 
   @override
@@ -42,10 +50,10 @@ class _QuizState extends State<Quiz> {
           decoration: const BoxDecoration(
             gradient: LinearGradient(
               colors: [
-                Color.fromARGB(255, 78, 35, 24),
-                Color.fromARGB(255, 238, 49, 15),
+                Color.fromARGB(255, 78, 13, 151),
+                Color.fromARGB(255, 107, 15, 168),
               ],
-              begin: Alignment.topRight,
+              begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
